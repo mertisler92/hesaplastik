@@ -1174,12 +1174,12 @@ body.light-theme .select-group select option {
 }
 
 @keyframes toastSlideIn {
-    from { opacity: 0; transform: translate(-50%, -20px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes toastFadeOut {
-    to { opacity: 0; transform: translate(-50%, -10px); }
+    to { opacity: 0; transform: translateY(-10px); }
 }
 
 @keyframes toastProgress {
@@ -1409,6 +1409,13 @@ body.light-theme .select-group select option {
     .app-nav {
         bottom: max(12px, env(safe-area-inset-bottom));
         z-index: 200;
+    }
+
+    .toast-container {
+        top: max(16px, env(safe-area-inset-top));
+        width: calc(100% - 24px);
+        max-width: 360px;
+        z-index: 400;
     }
 
     .btn-fab-mobile {
