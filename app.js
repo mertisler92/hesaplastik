@@ -492,6 +492,15 @@ function switchPage(targetPageId) {
 
     updateNavIndicator();
     
+    // Mobil Harcama Ekle butonunun görünürlüğünü güncelle
+    if (typeof mobileAddExpenseBtn !== 'undefined' && mobileAddExpenseBtn) {
+        if (targetPageId === 'expenses-page') {
+            mobileAddExpenseBtn.classList.remove('hidden');
+        } else {
+            mobileAddExpenseBtn.classList.add('hidden');
+        }
+    }
+    
     // Özet sayfasına geçildiğinde hesaplamayı zorunlu olarak yenile
     if (targetPageId === 'summary-page') {
         calculateAndRenderSummary();
