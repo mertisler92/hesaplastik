@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hesaplaştık">
+    <meta name="theme-color" content="#090714">
+    <meta name="description" content="Hesaplaştık - Alman Usulü Harcama Takip ve Borç Hesaplama Uygulaması">
+    <title>Hesaplaştık | Alman Usulü Harcama Takibi</title>
+    <!-- Favicon / Touch Icon -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237c4dff'/><path d='M16 8V24M8 16H24' stroke='white' stroke-width='3.5' stroke-linecap='round'/></svg>">
+    <!-- Google Fonts: Outfit (başlıklar) ve Inter (metinler) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <!-- Modern 3D/Gradient Efektli SVG Logo -->
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                        <path d="M16 8V24M8 16H24" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                        <circle cx="16" cy="16" r="4" fill="#00e676" stroke="white" stroke-width="2"/>
+                        <defs>
+                            <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#7c4dff"/>
+                                <stop offset="1" stop-color="#00e5ff"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1>Hesap<span>laştık</span></h1>
+            </div>
+            <div class="header-actions">
+
+                <!-- Koyu/Açık Tema Toggla -->
+                <button id="theme-toggle" class="icon-btn" aria-label="Tema Değiştir" title="Koyu/Açık Tema">
+                    <!-- Moon Icon (Dark Mode active by default) -->
+                    <svg id="moon-icon" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <!-- Sun Icon -->
+                    <svg id="sun-icon" class="theme-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="app-nav">
+            <button class="nav-tab active" data-target="people-page" id="tab-people">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span data-i18n="tab_people">Kişiler</span>
+            </button>
+            <button class="nav-tab" data-target="expenses-page" id="tab-expenses">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5v15a7 7 0 0 0 7 -7"></path><path d="M6 15l8-4"></path><path d="M14 7l-8 4"></path></svg>
+                <span data-i18n="tab_expenses">Harcamalar</span>
+            </button>
+            <button class="nav-tab" data-target="summary-page" id="tab-summary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span data-i18n="tab_summary">Özet / Borçlar</span>
+            </button>
+            <div class="nav-indicator"></div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="app-content">
+            
+            <!-- 1. KİŞİLER SAYFASI -->
+            <section id="people-page" class="page-section active">
+                <div class="section-header">
+                    <h2 data-i18n="people_title">Gruptaki Kişiler</h2>
+                    <p class="section-desc" data-i18n="people_desc">Harcamaları paylaşacak kişileri ekleyin. En az 2 kişi eklemelisiniz.</p>
+                </div>
+
+                <div class="add-person-wrapper">
+                    <form id="add-person-form" class="glass-card compact">
+                        <div class="input-group">
+                            <input type="text" id="person-name-input" placeholder=" " required maxlength="30" autocomplete="off">
+                            <label for="person-name-input" data-i18n="label_person_name">Kişi Adı</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="add-person-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            <span data-i18n="btn_add">Ekle</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="list-container">
+                    <div id="people-empty-state" class="empty-state">
+                        <div class="empty-icon">👥</div>
+                        <h3 data-i18n="empty_people_title">Henüz Kimse Yok</h3>
+                        <p data-i18n="empty_people_desc">Harcamaları paylaşmak için yukarıdaki alandan gruba kişiler ekleyin.</p>
+                    </div>
+                    <ul id="people-list" class="item-list">
+                        <!-- JS dinamik olarak dolduracak -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 2. HARCAMALAR / DETAY SAYFASI -->
+            <section id="expenses-page" class="page-section">
+                <div class="section-header-row">
+                    <div class="section-header">
+                        <h2 data-i18n="expenses_title">Grup Harcamaları</h2>
+                        <p class="section-desc" data-i18n="expenses_desc">Yapılan harcamaları, ödeyenleri ve ortak olanları kaydedin.</p>
+                    </div>
+                    <button class="btn btn-primary btn-fab-desktop" id="open-expense-modal-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        <span data-i18n="btn_add_expense">Harcama Ekle</span>
+                    </button>
+                </div>
+
+                <div class="list-container">
+                    <div id="expenses-empty-state" class="empty-state">
+                        <div class="empty-icon">🧾</div>
+                        <h3 data-i18n="empty_expenses_title">Harcama Bulunmamaktadır</h3>
+                        <p data-i18n="empty_expenses_desc">Henüz bir harcama girilmedi. Sağ üstteki veya aşağıdaki buton ile ilk harcamanızı ekleyin.</p>
+                        <button class="btn btn-secondary mt-4" id="empty-state-add-expense-btn" data-i18n="btn_first_expense">İlk Harcamayı Ekle</button>
+                    </div>
+                    <div id="expenses-list" class="cards-grid">
+                        <!-- JS dinamik olarak dolduracak -->
+                    </div>
+                </div>
+
+                <!-- Mobil Fab Button -->
+                <button class="btn btn-fab-mobile" id="mobile-add-expense-btn" aria-label="Harcama Ekle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+            </section>
+
+            <!-- 3. ÖZET SAYFASI -->
+            <section id="summary-page" class="page-section">
+                <div class="section-header">
+                    <h2 data-i18n="summary_title">Hesap Özeti & Dengeleme</h2>
+                    <p class="section-desc" data-i18n="summary_desc">Harcamaların genel dökümü ve minimum transfer ile borç kapatma planı.</p>
+                </div>
+
+                <!-- İSTATİSTİK KARTLARI -->
+                <div class="stats-grid">
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon-wrapper blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="stat_total_expense">Toplam Harcama</span>
+                            <span class="stat-val" id="total-group-expense">0,00 ₺</span>
+                        </div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon-wrapper green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="stat_people_count">Kişi Sayısı</span>
+                            <span class="stat-val" id="total-people-count">0</span>
+                        </div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon-wrapper purple">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2.1l4 4-4 4"></path><path d="M3 22v-6h6"></path><path d="M21 12A9 9 0 0 1 6 19.3L3 16"></path><path d="M3 12a9 9 0 0 1 15-7.3l3 3.3"></path></svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="stat_transfers_count">Transfer Sayısı</span>
+                            <span class="stat-val" id="total-transactions-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-grid">
+                    <!-- Bireysel Net Durum Tablosu -->
+                    <div class="glass-card summary-table-card">
+                        <h3 class="card-title" data-i18n="card_member_balances">Üye Bakiyeleri</h3>
+                        <div class="balances-list" id="balances-list">
+                            <!-- JS ile doldurulacak -->
+                        </div>
+                    </div>
+
+                    <!-- Borç Kapatma / Transfer Listesi -->
+                    <div class="glass-card settlement-card">
+                        <div class="card-header-row">
+                            <h3 class="card-title" data-i18n="card_payment_plan">Ödeme Planı (Minimum Transfer)</h3>
+                            <button class="btn btn-secondary btn-sm" id="copy-summary-btn" title="WhatsApp formatında kopyala">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                <span data-i18n="btn_copy_summary">Özeti Kopyala</span>
+                            </button>
+                        </div>
+                        <div class="settlements-list" id="settlements-list">
+                            <!-- JS ile doldurulacak -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- HARCAMA EKLE/DÜZENLE MODALI -->
+    <div id="expense-modal" class="modal-backdrop hidden">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 id="modal-title" data-i18n="modal_expense_new_title">Yeni Harcama Ekle</h3>
+                <button class="icon-btn close-modal-btn" id="close-expense-modal-btn" aria-label="Kapat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <form id="expense-form" class="modal-body">
+                <input type="hidden" id="expense-id-input">
+
+                <!-- Açıklama -->
+                <div class="input-group">
+                    <input type="text" id="expense-desc-input" placeholder=" " required autocomplete="off">
+                    <label for="expense-desc-input" data-i18n="label_expense_desc">Harcama Açıklaması</label>
+                </div>
+
+                <!-- Tutar -->
+                <div class="input-group">
+                    <input type="number" id="expense-amount-input" step="0.01" min="0.01" placeholder=" " required>
+                    <label for="expense-amount-input" data-i18n="label_expense_amount">Tutar (₺)</label>
+                </div>
+
+                <!-- Ödeyen Kişi -->
+                <div class="select-group">
+                    <label for="expense-payer-select" data-i18n="label_expense_payer">Ödemeyi Yapan Kişi</label>
+                    <select id="expense-payer-select" required>
+                        <option value="" disabled selected data-i18n="select_payer_placeholder">Kişi Seçin...</option>
+                        <!-- JS ile dolacak -->
+                    </select>
+                </div>
+
+                <!-- Yararlananlar -->
+                <div class="beneficiaries-group">
+                    <div class="beneficiaries-header">
+                        <label data-i18n="label_expense_beneficiaries">Bu Harcamadan Yararlananlar</label>
+                        <div class="selection-helpers">
+                            <button type="button" class="btn-link" id="select-all-btn" data-i18n="btn_select_all">Hepsini Seç</button>
+                            <button type="button" class="btn-link" id="select-none-btn" data-i18n="btn_select_none">Temizle</button>
+                        </div>
+                    </div>
+                    <div class="beneficiaries-list-container" id="beneficiaries-checkboxes">
+                        <!-- JS ile dolacak -->
+                    </div>
+                    <span class="error-text hidden" id="beneficiaries-error">En az bir yararlanan kişi seçmelisiniz!</span>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary close-modal-btn" id="cancel-expense-btn" data-i18n="btn_cancel">İptal</button>
+                    <button type="submit" class="btn btn-primary" id="save-expense-btn" data-i18n="btn_save">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- KİŞİ DÜZENLEME MODALI -->
+    <div id="person-edit-modal" class="modal-backdrop hidden">
+        <div class="modal-content glass-card compact-modal">
+            <div class="modal-header">
+                <h3 data-i18n="modal_person_edit_title">Kişiyi Düzenle</h3>
+                <button class="icon-btn close-modal-btn" id="close-person-modal-btn" aria-label="Kapat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <form id="person-edit-form" class="modal-body">
+                <input type="hidden" id="person-edit-id-input">
+                <div class="input-group">
+                    <input type="text" id="person-edit-name-input" placeholder=" " required maxlength="30" autocomplete="off">
+                    <label for="person-edit-name-input" data-i18n="label_person_new_name">Yeni İsim</label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary close-modal-btn" id="cancel-person-edit-btn" data-i18n="btn_cancel">İptal</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="btn_update">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST BİLDİRİM KUTUSU -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
